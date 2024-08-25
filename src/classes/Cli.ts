@@ -4,6 +4,7 @@ import Truck from "./Truck.js";
 import Car from "./Car.js";
 import Motorbike from "./Motorbike.js";
 import Wheel from "./Wheel.js";
+import Vehicle from "./Vehicle.js";
 
 // define the Cli class
 class Cli {
@@ -392,24 +393,30 @@ class Cli {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               this.vehicles[i].reverse();
             }
+
+            // TODO: add statements to perform the tow action only if the selected vehicle is a truck. Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument. After calling the findVehicleToTow method, you will need to return to avoid instantly calling the performActions method again since findVehicleToTow is asynchronous.
+            else if (
+              answers.action === "Tow a vehicle" &&
+              this.vehicles[i] instanceof Truck
+            ) {
+              this.findVehicleToTow(this.vehicles[i] as Truck);
+              return;
+            }
+            // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
+            else if (
+              answers.action === "Do a wheelie" &&
+              this.vehicles[i] instanceof Motorbike
+            ) {
+              this.vehicles[i].wheelie();
+            } else if (answers.action === "Select or create another vehicle") {
+              // start the cli to return to the initial prompt if the user wants to select or create another vehicle
+              this.startCli();
+              return;
+            } else {
+              // exit the cli if the user selects exit
+              this.exit = true;
+            }
           }
-        }
-        // TODO: add statements to perform the tow action only if the selected vehicle is a truck. Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument. After calling the findVehicleToTow method, you will need to return to avoid instantly calling the performActions method again since findVehicleToTow is asynchronous.
-        else if (answers.action === 'Tow a vehicle' && this.vehicles[i] instanceof Truck) {
-          this.findVehicleToTow();
-          return;
-        }
-        // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
-        else if (answers.action === 'Do a wheelie' && this.vehicles[i] instanceof Motorbike) {
-          this.vehicles[i].wheelie();
-        }
-        else if (answers.action === 'Select or create another vehicle') {
-          // start the cli to return to the initial prompt if the user wants to select or create another vehicle
-          this.startCli();
-          return;
-        } else {
-          // exit the cli if the user selects exit
-          this.exit = true;
         }
         if (!this.exit) {
           // if the user does not want to exit, perform actions on the selected vehicle

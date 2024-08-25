@@ -46,6 +46,11 @@ class Car extends Vehicle {
     }
   }
 
+  // Adding the wheelie method to the Car class
+  wheelie(): void {
+    console.log(`Car ${this.make} ${this.model} is doing a wheelie!`);
+  }
+
   // Override the printDetails method from the Vehicle class
   override printDetails(): void {
     // Call the printDetails method of the parent class, Vehicle

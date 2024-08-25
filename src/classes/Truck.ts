@@ -36,6 +36,11 @@ class Truck extends Vehicle implements AbleToTow {
     this.wheels = wheels.length === 4 ? wheels : [new Wheel(), new Wheel(), new Wheel(), new Wheel()];
     this.towingCapacity = towingCapacity
   }
+  // Adding the wheelie method to the Truck class: this was not one of the TODOs, had to add it myself
+  wheelie(): void {
+    console.log(`Truck ${this.make} ${this.model} is doing a wheelie!`);
+  }
+
   // TODO: Implement the tow method from the AbleToTow interface
   tow(vehicle: Truck | Motorbike | Car): void {
     // TODO: Get the make an model of the vehicle if it exists
