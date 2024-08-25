@@ -38,7 +38,7 @@ class Motorbike extends Vehicle {
   }
 
   // TODO: Override the printDetails method from the Vehicle class
-  printDetails(): void {
+  override printDetails(): void {
   // TODO: The method should call the printDetails method of the parent class
   super.printDetails();
   // TODO: The method should log the details of the Motorbike
